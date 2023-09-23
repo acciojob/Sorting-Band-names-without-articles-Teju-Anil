@@ -1,21 +1,23 @@
-//your code here
-let bandNames = ['The Rolling Stones', 'Led Zeppelin', 'The Beatles', 'Aerosmith'];
+document.addEventListener('DOMContentLoaded', function() {
+    let bandNames = ['The Rolling Stones', 'Led Zeppelin', 'The Beatles', 'Nirvana', 'Pink Floyd'];
 
-// Define a function to remove articles and return the modified name
-function removeArticle(name) {
-  return name.replace(/^(a |an |the )/i, '').trim();
-}
+    // Function to remove articles from the beginning of band names
+    function removeArticle(name) {
+        return name.replace(/^(a |an |the )/i, '');
+    }
 
-// Sort the band names without articles
-bandNames.sort((a, b) => removeArticle(a).localeCompare(removeArticle(b)));
+    // Sorting the band names without articles
+    bandNames.sort(function(a, b) {
+        return removeArticle(a).localeCompare(removeArticle(b));
+    });
 
-// Get the ul element with id 'band'
-let ulElement = document.getElementById('band');
+    // Getting the ul element with id 'band'
+    let bandList = document.getElementById('band');
 
-// Loop through the sorted band names and create li elements
-bandNames.forEach(name => {
-  let liElement = document.createElement('li');
-  liElement.textContent = name;
-  ulElement.appendChild(liElement);
+    // Populating the ul element with sorted band names
+    for (let i = 0; i < bandNames.length; i++) {
+        let listItem = document.createElement('li');
+        listItem.textContent = bandNames[i];
+        bandList.appendChild(listItem);
+    }
 });
-
